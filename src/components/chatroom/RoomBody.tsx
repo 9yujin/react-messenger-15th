@@ -18,22 +18,21 @@ const RoomBody = ({ chats, users, currentUser }: RoomBodyProps) => {
 
     const bodyRef = useRef<HTMLDivElement>(null);
 
+    // 맨 아래로 버튼 보이기 & 스크롤바 숨기기
     const handleScrollY = throttle(() => {
         if (bodyRef.current) {
             const roomBodyScrollY = bodyRef.current.scrollHeight - bodyRef.current.scrollTop;
+
             if (roomBodyScrollY > 800 && !scrollButtonVisible) {
-                console.log('visible');
                 setScrollButtonVisible(true);
-            } else if (roomBodyScrollY <= 800 && scrollBarVisible) {
-                console.log('hide');
+            } else if (roomBodyScrollY <= 800 && scrollButtonVisible) {
                 setScrollButtonVisible(false);
             }
         }
-
-        setScrollBarVisible(false);
+        setScrollBarVisible(true);
         setTimeout(() => {
-            setScrollBarVisible(true);
-        }, 800);
+            setScrollBarVisible(false);
+        }, 2000);
     }, 300);
 
     const goToBottom = () => {
@@ -44,6 +43,7 @@ const RoomBody = ({ chats, users, currentUser }: RoomBodyProps) => {
 
     useEffect(() => {
         goToBottom();
+        setScrollBarVisible(false);
     }, [chats]);
 
     const handleClickGoToBottom = () => {
@@ -79,10 +79,10 @@ const RoomBodyContainer = styled.div<{ scrollBarVisible: boolean }>`
     background-image: linear-gradient(315deg, #8989bb 0%, #a5a4cb 74%);
     position: relative;
     ${({ scrollBarVisible }) =>
-        scrollBarVisible &&
+        !scrollBarVisible &&
         css`
             &::-webkit-scrollbar-thumb {
-                background-color: rgba(211, 211, 211, 0);
+                background-color: transparent;
                 border-radius: 3px;
             }
         `}

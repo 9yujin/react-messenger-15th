@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 import { ChatType, UserType } from '../../Interface';
 import { timeForToday } from '../../utils/timeForToday';
 import Squircle from '../user/Squircle';
-
+import React from 'react';
 interface ChatItemProps {
     chat: ChatType;
     prevChat: ChatType;
@@ -29,7 +29,7 @@ const ChatItem = ({ chat, user, currentUser, prevChat }: ChatItemProps) => {
                 </ChatWrapper>
             ) : (
                 <>
-                    <ProfileImage>{!isPrevSame && <Squircle imageUrl={user.profileImage} selected={false} />}</ProfileImage>
+                    <ProfileImage>{!isPrevSame && <Squircle imageUrl={user.profileImage} selected={false} size={40} />}</ProfileImage>
                     <div>
                         {!isPrevSame && <div style={{ color: '#333' }}>{user.userName}</div>}
                         <ChatWrapper isCurrentUser={isCurrentUser}>
@@ -45,9 +45,11 @@ const ChatItem = ({ chat, user, currentUser, prevChat }: ChatItemProps) => {
     );
 };
 
-export default ChatItem;
+export default React.memo(ChatItem);
 
 const ChatItemContainer = styled.div<IsCurrentUserProps>`
+    font-size: 13px;
+    width: 100%;
     ${({ isPrevSame }) =>
         isPrevSame
             ? css`
@@ -85,6 +87,9 @@ const ChatWrapper = styled.div<IsCurrentUserProps>`
             : css``}
 `;
 
+// asdfasdfsadfasdf 와 같이 영어를 공백없이 길게 넣었을때 줄바꿈이 되지않고
+// 화면을 넘어가는 경우가 있음.
+// 왜이럴까요
 const ChatBubble = styled.div<IsCurrentUserProps>`
     padding: 10px;
     white-space: pre-wrap;

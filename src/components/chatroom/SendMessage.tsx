@@ -1,16 +1,16 @@
 import styled from 'styled-components';
 import useInput from '../../hooks/useInput';
-import { ChatDataType, ChatType } from '../../Interface';
+import { RoomType, ChatType } from '../../Interface';
 import dayjs from 'dayjs';
 import { v4 as uuidv4 } from 'uuid';
 import * as api from '../../api/index';
 import { KeyboardEvent, FormEvent, useRef, useEffect } from 'react';
 import { useSetRecoilState } from 'recoil';
-import { chatState } from '../../store/recoil/recoil';
+import { chatState } from '../../store/recoil';
 
 interface SendMessageProps {
     roomId: number;
-    chatData: ChatDataType[];
+    chatData: RoomType[];
     userId: number;
 }
 
@@ -86,6 +86,7 @@ const StyledForm = styled.form`
     display: grid;
     grid-template-columns: auto 88px;
     grid-gap: 16px;
+    font-size: 13px;
 `;
 const MessageInput = styled.textarea`
     border: 0px;
