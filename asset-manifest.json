@@ -1,0 +1,11 @@
+{
+  "files": {
+    "main.js": "/react-todo-15th/static/js/main.8775c9a1.js",
+    "index.html": "/react-todo-15th/index.html",
+    "static/media/bottom.svg": "/react-todo-15th/static/media/bottom.ce45fcb1341689e8729e1bebca972cbd.svg",
+    "main.8775c9a1.js.map": "/react-todo-15th/static/js/main.8775c9a1.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.8775c9a1.js"
+  ]
+}
